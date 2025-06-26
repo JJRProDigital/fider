@@ -1,8 +1,8 @@
 # fider
 
-## Error notificación
+## He enviado el formulario de instalación, pero no he recibido ningún correo electrónico de confirmación
 
-docker exec -it 7717d8e7ecde bash
+docker exec -it idconetendor bash
 
 psql -U fider -d fider
 
