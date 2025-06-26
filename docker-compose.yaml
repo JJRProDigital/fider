@@ -1,0 +1,33 @@
+version: '2'
+services:
+  db:
+    restart: always
+    image: postgres:17
+    volumes:
+      - /var/fider/pg_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: fider
+      POSTGRES_PASSWORD: 22pass!word11
+  app:
+    restart: always
+    image: getfider/fider:stable
+    ports:
+      - "3000:3000"
+    environment:
+      # Public Host Name
+      BASE_URL: http://localhost
+
+      # Connection string to the PostgreSQL database
+      DATABASE_URL: postgres://fider:22pass!word11@db:5432/fider?sslmode=disable
+
+      # Generate a 512-bit secret here https://www.allkeysgenerator.com/Random/Security-Encryption-Key-Generator.aspx
+      JWT_SECRET: jVO4lpXlgXWdxxPLtbFWwrsJ6hYaDfcaTh_77QZCuj20sd1KmkFzh0vGUDJTpZQA
+
+      # From which account e-mails will be sent
+      EMAIL_NOREPLY: hola@juanjoserprofesionaldigital.com
+
+      EMAIL_SMTP_HOST: smtp.gmail.com
+      EMAIL_SMTP_PORT: 587
+      EMAIL_SMTP_USERNAME: hola@juanjoserprofesionaldigital.com
+      EMAIL_SMTP_PASSWORD: 123456
+      EMAIL_SMTP_ENABLE_STARTTLS: 'true'
